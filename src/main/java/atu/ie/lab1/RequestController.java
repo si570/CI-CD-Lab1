@@ -22,4 +22,9 @@ public class RequestController {
     public String details(@RequestParam String name, @RequestParam int age) {
         return "Name: " + name + ", Age: " + age;
     }
+
+    @GetMapping("/person")
+    public Person getperson() {
+        return new Person("Subhan", 21);
+    }
 }
