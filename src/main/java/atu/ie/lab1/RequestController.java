@@ -1,21 +1,19 @@
 package atu.ie.lab1;
 
-
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api") // Added base path for clarity
 public class RequestController {
 
-    @GetMapping("hello")
-    public String hello(){
+    @GetMapping("/hello")
+    public String hello() {
         return "Hello";
     }
 
     @GetMapping("/greet/{name}")
     public String greetByName(@PathVariable String name) {
-
-        return "Hello" + name + "!";
+        return "Hello " + name + "!"; // Added space before name
     }
 
     @GetMapping("/details")
@@ -24,7 +22,8 @@ public class RequestController {
     }
 
     @GetMapping("/person")
-    public Person getperson() {
+    public Person getPerson() {
         return new Person("Subhan", 21);
     }
 }
+
