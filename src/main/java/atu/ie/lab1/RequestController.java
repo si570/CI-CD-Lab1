@@ -25,5 +25,32 @@ public class RequestController {
     public Person getPerson() {
         return new Person("Subhan", 21);
     }
+    @GetMapping("/calculate")
+    public CalculationResult calculate(
+            @RequestParam double num1,
+            @RequestParam double num2,
+            @RequestParam String operation) {
+
+        double total;
+        switch (operation.toLowerCase()) {
+            case "add":
+                total = num1 + num2;
+                return new CalculationResult("add", String.valueOf(total));
+            case "subtract":
+                total = num1 - num2;
+                return new CalculationResult("subtract", String.valueOf(total));
+            case "multiply":
+                total = num1 * num2;
+                return new CalculationResult("multiply", String.valueOf(total));
+            case "divide":
+                if (num2 == 0) {
+                    return new CalculationResult("divide", "Error: Cannot divide by zero");
+                }
+                total = num1 / num2;
+                return new CalculationResult("divide", String.valueOf(total));
+            default:
+                return new CalculationResult(operation, "Error: Unsupported operation");
+        }
+    }
 }
 
